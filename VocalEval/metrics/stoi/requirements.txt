@@ -1,0 +1,3 @@
+pystoi
+librosa
+numpy

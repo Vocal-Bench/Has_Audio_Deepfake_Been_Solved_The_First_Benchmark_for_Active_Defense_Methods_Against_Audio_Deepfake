@@ -1,0 +1,4 @@
+speechbrain
+torch
+librosa
+numpy

@@ -1,0 +1,3 @@
+pesq
+librosa
+numpy
