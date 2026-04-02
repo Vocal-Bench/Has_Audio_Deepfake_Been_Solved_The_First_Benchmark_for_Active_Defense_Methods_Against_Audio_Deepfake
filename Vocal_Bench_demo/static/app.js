@@ -200,13 +200,7 @@ function renderSummary(summary) {
           <div class="eyebrow">Metrics Snapshot</div>
           <h2 class="summary-title">${escapeHtml(summary.title || "Results Table")}</h2>
         </div>
-        <div class="summary-meta">
-          <div class="stat-chip"><span>Source</span><strong>${escapeHtml(summary.source || "")}</strong></div>
-          <div class="stat-chip"><span>Rows</span><strong>${escapeHtml(summary.row_count ?? "")}</strong></div>
-          <div class="stat-chip"><span>Methods</span><strong>${escapeHtml(summary.method_count ?? "")}</strong></div>
-        </div>
       </div>
-      <p class="summary-note">${escapeHtml(summary.note || "")}</p>
       <div class="summary-scroll">
         <table class="summary-table">
           <thead>
