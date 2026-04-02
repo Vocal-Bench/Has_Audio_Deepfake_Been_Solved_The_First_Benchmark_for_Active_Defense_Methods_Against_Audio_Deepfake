@@ -1,0 +1,124 @@
+{
+  "axes": {
+    "method": "方法",
+    "variant": "变体",
+    "backend": "细化模型",
+    "language": "语言",
+    "scenario": "场景"
+  },
+  "metric_groups": {
+    "speech_quality": {
+      "description": "Objective quality and intelligibility indicators computed on audio outputs."
+    },
+    "content_consistency": {
+      "description": "Text-level correctness between synthesis output and reference content."
+    },
+    "speaker_similarity": {
+      "description": "Similarity between protected / cloned speech and target speaker identity."
+    },
+    "defense_effectiveness": {
+      "description": "Decision-style protection indicators derived from similarity thresholds."
+    },
+    "efficiency": {
+      "description": "Runtime or throughput measurements."
+    }
+  },
+  "metrics": [
+    {
+      "key": "stoi",
+      "display_name": "STOI",
+      "source_column": "STOI均值",
+      "group": "speech_quality",
+      "direction": "higher_better",
+      "available_in_current_csv": true
+    },
+    {
+      "key": "snr_db",
+      "display_name": "SNR(dB)",
+      "source_column": "SNR均值(dB)",
+      "group": "speech_quality",
+      "direction": "higher_better",
+      "available_in_current_csv": true
+    },
+    {
+      "key": "pesq",
+      "display_name": "PESQ",
+      "source_column": "PESQ均值",
+      "group": "speech_quality",
+      "direction": "higher_better",
+      "available_in_current_csv": true
+    },
+    {
+      "key": "visqol",
+      "display_name": "ViSQOL",
+      "source_column": "ViSQOL均值",
+      "group": "speech_quality",
+      "direction": "higher_better",
+      "available_in_current_csv": true
+    },
+    {
+      "key": "quality_snr",
+      "display_name": "Quality_SNR",
+      "source_column": null,
+      "group": "speech_quality",
+      "direction": "higher_better",
+      "available_in_current_csv": false
+    },
+    {
+      "key": "quality_stoi",
+      "display_name": "Quality_STOI",
+      "source_column": null,
+      "group": "speech_quality",
+      "direction": "higher_better",
+      "available_in_current_csv": false
+    },
+    {
+      "key": "quality_pesq",
+      "display_name": "Quality_PESQ",
+      "source_column": null,
+      "group": "speech_quality",
+      "direction": "higher_better",
+      "available_in_current_csv": false
+    },
+    {
+      "key": "wer",
+      "display_name": "WER",
+      "source_column": "WER均值",
+      "group": "content_consistency",
+      "direction": "lower_better",
+      "available_in_current_csv": true
+    },
+    {
+      "key": "cer",
+      "display_name": "CER",
+      "source_column": "CER均值",
+      "group": "content_consistency",
+      "direction": "lower_better",
+      "available_in_current_csv": true
+    },
+    {
+      "key": "asv",
+      "display_name": "ASV",
+      "source_column": "ASV",
+      "group": "speaker_similarity",
+      "direction": "lower_better",
+      "available_in_current_csv": true
+    },
+    {
+      "key": "eer",
+      "display_name": "EER",
+      "source_column": null,
+      "group": "defense_effectiveness",
+      "direction": "higher_better",
+      "available_in_current_csv": false
+    },
+    {
+      "key": "time_cost",
+      "display_name": "TimeCost",
+      "source_column": null,
+      "group": "efficiency",
+      "direction": "lower_better",
+      "available_in_current_csv": false
+    }
+  ]
+}
