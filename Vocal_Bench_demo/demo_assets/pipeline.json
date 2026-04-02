@@ -27,7 +27,7 @@
       "Source Audio 是页面统一入口样本，便于横向比较。",
       "Defense 节点是各主动防御方法输出的参考说话人音频。",
       "Variant 胶囊表示在对应防御音频上继续施加的通道变化。",
-      "VC 模型里已将原来的 GPTSoVITS_VC 替换为 AdaIN-VC。"
+      "VC 模型名称显示为 GPTSoVITS_VC。"
     ],
     "variant_guide": [
       {
@@ -65,7 +65,7 @@
     ],
     "vc_models": [
       "SeedVC",
-      "AdaIN-VC"
+      "GPTSoVITS_VC"
     ]
   },
   "branches": [
@@ -115,7 +115,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/Original/original/AdaIN-VC.wav",
               "metrics": {}
@@ -169,7 +169,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/Original/denoised/AdaIN-VC.wav",
               "metrics": {}
@@ -223,7 +223,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/Original/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
@@ -277,7 +277,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/Original/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
@@ -339,7 +339,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/AntiFake/original/AdaIN-VC.wav",
               "metrics": {}
@@ -393,7 +393,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/AntiFake/denoised/AdaIN-VC.wav",
               "metrics": {}
@@ -447,7 +447,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/AntiFake/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
@@ -501,7 +501,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/AntiFake/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
@@ -563,7 +563,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/Attack-VC/original/AdaIN-VC.wav",
               "metrics": {}
@@ -617,7 +617,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/Attack-VC/denoised/AdaIN-VC.wav",
               "metrics": {}
@@ -671,7 +671,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/Attack-VC/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
@@ -725,7 +725,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/Attack-VC/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
@@ -787,7 +787,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/ClearMask/original/AdaIN-VC.wav",
               "metrics": {}
@@ -841,7 +841,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/ClearMask/denoised/AdaIN-VC.wav",
               "metrics": {}
@@ -895,7 +895,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/ClearMask/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
@@ -949,7 +949,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/ClearMask/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
@@ -1011,7 +1011,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/SampleMask/original/AdaIN-VC.wav",
               "metrics": {}
@@ -1065,7 +1065,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/SampleMask/denoised/AdaIN-VC.wav",
               "metrics": {}
@@ -1119,7 +1119,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/SampleMask/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
@@ -1173,7 +1173,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/SampleMask/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
@@ -1235,7 +1235,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/SafeSpeech/original/AdaIN-VC.wav",
               "metrics": {}
@@ -1289,7 +1289,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/SafeSpeech/denoised/AdaIN-VC.wav",
               "metrics": {}
@@ -1343,7 +1343,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/SafeSpeech/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
@@ -1397,7 +1397,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/SafeSpeech/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
@@ -1459,7 +1459,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/VoiceGuard/original/AdaIN-VC.wav",
               "metrics": {}
@@ -1513,7 +1513,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/VoiceGuard/denoised/AdaIN-VC.wav",
               "metrics": {}
@@ -1567,7 +1567,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/VoiceGuard/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
@@ -1621,7 +1621,7 @@
               "metrics": {}
             },
             {
-              "model": "AdaIN-VC",
+              "model": "GPTSoVITS_VC",
               "kind": "VC",
               "audio": "demo_assets/VoiceGuard/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
