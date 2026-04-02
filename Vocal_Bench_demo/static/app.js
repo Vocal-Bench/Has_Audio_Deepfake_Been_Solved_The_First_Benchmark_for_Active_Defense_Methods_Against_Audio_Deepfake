@@ -251,8 +251,8 @@ function buildMarkup(payload, summary) {
   return `
     ${renderHero(payload)}
     ${renderInfo(payload)}
-    ${renderSummary(summary)}
     ${renderTree(payload)}
+    ${renderSummary(summary)}
   `;
 }
 
