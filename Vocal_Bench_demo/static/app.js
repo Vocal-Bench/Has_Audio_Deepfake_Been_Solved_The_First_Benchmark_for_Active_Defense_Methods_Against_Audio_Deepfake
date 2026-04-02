@@ -318,10 +318,9 @@ function setActiveBranch(root, branchIndex) {
   });
 
   root.querySelectorAll(".tree-path").forEach((path) => {
-    const shared = path.dataset.branchIndex === "shared";
     const sameBranch = branchIndex !== null && path.dataset.branchIndex === String(branchIndex);
-    path.classList.toggle("is-active", branchIndex !== null && (shared || sameBranch));
-    path.classList.toggle("is-inactive", branchIndex !== null && !(shared || sameBranch));
+    path.classList.toggle("is-active", sameBranch);
+    path.classList.toggle("is-inactive", branchIndex !== null && !sameBranch);
   });
 }
 
