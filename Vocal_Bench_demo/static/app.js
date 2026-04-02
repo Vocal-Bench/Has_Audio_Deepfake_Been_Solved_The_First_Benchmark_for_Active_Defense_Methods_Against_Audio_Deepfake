@@ -11,6 +11,7 @@ const els = {
 };
 
 const PIPELINE_URL = document.body.dataset.pipelineUrl || "./demo_assets/pipeline.json";
+const SUMMARY_URL = document.body.dataset.summaryUrl || "./demo_assets/results_summary.json";
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (char) => (
@@ -178,6 +179,48 @@ function renderInfo(payload) {
   `;
 }
 
+function renderSummary(summary) {
+  if (!summary || !Array.isArray(summary.rows) || !summary.rows.length) {
+    return "";
+  }
+
+  const headers = summary.columns.map((col) => `<th>${escapeHtml(col.label)}</th>`).join("");
+  const rows = summary.rows.map((row) => {
+    const cells = summary.columns.map((col) => {
+      const value = row[col.key];
+      return `<td>${escapeHtml(value ?? "")}</td>`;
+    }).join("");
+    return `<tr>${cells}</tr>`;
+  }).join("");
+
+  return `
+    <section class="summary-panel">
+      <div class="summary-head">
+        <div>
+          <div class="eyebrow">Metrics Snapshot</div>
+          <h2 class="summary-title">${escapeHtml(summary.title || "Results Table")}</h2>
+        </div>
+        <div class="summary-meta">
+          <div class="stat-chip"><span>Source</span><strong>${escapeHtml(summary.source || "")}</strong></div>
+          <div class="stat-chip"><span>Rows</span><strong>${escapeHtml(summary.row_count ?? "")}</strong></div>
+          <div class="stat-chip"><span>Methods</span><strong>${escapeHtml(summary.method_count ?? "")}</strong></div>
+        </div>
+      </div>
+      <p class="summary-note">${escapeHtml(summary.note || "")}</p>
+      <div class="summary-scroll">
+        <table class="summary-table">
+          <thead>
+            <tr>${headers}</tr>
+          </thead>
+          <tbody>
+            ${rows}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
+
 function renderTree(payload) {
   return `
     <section class="tree-panel">
@@ -210,10 +253,11 @@ function renderTree(payload) {
   `;
 }
 
-function buildMarkup(payload) {
+function buildMarkup(payload, summary) {
   return `
     ${renderHero(payload)}
     ${renderInfo(payload)}
+    ${renderSummary(summary)}
     ${renderTree(payload)}
   `;
 }
@@ -375,12 +419,12 @@ function drawTreeLines(root) {
   svg.innerHTML = paths.join("");
 }
 
-function renderPipeline(payload) {
+function renderPipeline(payload, summary) {
   pauseCurrent();
   state.activeBranch = null;
   state.activeVariant = null;
   state.pipeline = payload;
-  els.root.innerHTML = buildMarkup(payload);
+  els.root.innerHTML = buildMarkup(payload, summary);
   bindPlayback(els.root);
   drawTreeLines(els.root);
   bindFocus(els.root);
@@ -395,8 +439,11 @@ async function fetchJSON(url) {
 }
 
 async function loadPipeline() {
-  const payload = await fetchJSON(PIPELINE_URL);
-  renderPipeline(payload);
+  const [payload, summary] = await Promise.all([
+    fetchJSON(PIPELINE_URL),
+    fetchJSON(SUMMARY_URL).catch(() => null),
+  ]);
+  renderPipeline(payload, summary);
 }
 
 window.addEventListener("resize", () => {

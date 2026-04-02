@@ -1,0 +1,75 @@
+{
+  "title": "Benchmark Summary Table",
+  "source": "A(1).csv",
+  "row_count": 1440,
+  "method_count": 5,
+  "note": "该表基于 /home/torfqy/data/A(1).csv 汇总，按方法对所有语言、场景、变体和细化模型做均值聚合，用于提供一个简洁的整体指标概览。",
+  "columns": [
+    { "key": "method", "label": "Method" },
+    { "key": "configs", "label": "Configs" },
+    { "key": "stoi", "label": "STOI" },
+    { "key": "snr_db", "label": "SNR(dB)" },
+    { "key": "pesq", "label": "PESQ" },
+    { "key": "visqol", "label": "ViSQOL" },
+    { "key": "wer", "label": "WER" },
+    { "key": "cer", "label": "CER" },
+    { "key": "asv", "label": "ASV" }
+  ],
+  "rows": [
+    {
+      "method": "Original",
+      "configs": 288,
+      "stoi": 0.9395,
+      "snr_db": 25.9628,
+      "pesq": 3.9449,
+      "visqol": 4.3082,
+      "wer": 0.0569,
+      "cer": 0.0689,
+      "asv": 0.9715
+    },
+    {
+      "method": "Attack-VC",
+      "configs": 288,
+      "stoi": 0.9246,
+      "snr_db": 24.6333,
+      "pesq": 3.8732,
+      "visqol": 4.2282,
+      "wer": 0.0615,
+      "cer": 0.0759,
+      "asv": 0.9282
+    },
+    {
+      "method": "VoiceGuard",
+      "configs": 288,
+      "stoi": 0.8813,
+      "snr_db": 21.4118,
+      "pesq": 3.5286,
+      "visqol": 3.9819,
+      "wer": 0.1071,
+      "cer": 0.1261,
+      "asv": 0.5983
+    },
+    {
+      "method": "SafeSpeech",
+      "configs": 288,
+      "stoi": 0.8679,
+      "snr_db": 19.492,
+      "pesq": 3.3198,
+      "visqol": 3.7757,
+      "wer": 0.1403,
+      "cer": 0.1683,
+      "asv": 0.5947
+    },
+    {
+      "method": "AntiFake",
+      "configs": 288,
+      "stoi": 0.8377,
+      "snr_db": 17.8253,
+      "pesq": 3.0814,
+      "visqol": 3.5881,
+      "wer": 0.1896,
+      "cer": 0.2258,
+      "asv": 0.3996
+    }
+  ]
+}

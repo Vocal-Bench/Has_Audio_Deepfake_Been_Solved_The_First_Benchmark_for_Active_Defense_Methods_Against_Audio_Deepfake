@@ -27,7 +27,7 @@
       "Source Audio 是页面统一入口样本，便于横向比较。",
       "Defense 节点是各主动防御方法输出的参考说话人音频。",
       "Variant 胶囊表示在对应防御音频上继续施加的通道变化。",
-      "VC 模型名称显示为 GPTSoVITS_VC。"
+      "VC 模型里已将原来的 GPTSoVITS_VC 替换为 GPTSoVITS_VC。"
     ],
     "variant_guide": [
       {
