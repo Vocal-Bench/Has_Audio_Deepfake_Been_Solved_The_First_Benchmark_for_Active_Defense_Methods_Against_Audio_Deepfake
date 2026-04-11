@@ -3,7 +3,7 @@
   "source": "A(1).csv",
   "row_count": 1440,
   "method_count": 5,
-  "note": "该表基于 /home/torfqy/data/A(1).csv 汇总，按方法对所有语言、场景、变体和细化模型做均值聚合，用于提供一个简洁的整体指标概览。",
+  "note": "This table is aggregated from /home/torfqy/data/A(1).csv by method, averaging across languages, scenarios, variants, and model granularities to provide a concise global metric overview.",
   "columns": [
     { "key": "method", "label": "Method" },
     { "key": "configs", "label": "Configs" },

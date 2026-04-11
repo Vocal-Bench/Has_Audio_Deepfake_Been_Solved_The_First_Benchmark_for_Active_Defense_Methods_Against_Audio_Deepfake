@@ -132,7 +132,7 @@ function renderHero(payload) {
   return `
     <section class="hero">
       <div class="hero-main">
-        <div class="eyebrow">Static Audio Explorer</div>
+        <div class="eyebrow">Controlled Audio Comparison</div>
         <h1>${escapeHtml(payload.title || "VocalBench Demo")}</h1>
         <p class="hero-copy">${escapeHtml(payload.subtitle || "")}</p>
         <div class="stat-row">
@@ -167,12 +167,12 @@ function renderInfo(payload) {
   return `
     <section class="info-grid">
       <article class="info-card">
-        <div class="eyebrow">How To Read</div>
+        <div class="eyebrow">Interpretation Guide</div>
         <p class="info-copy">${escapeHtml(payload.meta.overview || "")}</p>
         <ul class="point-list">${steps}</ul>
       </article>
       <article class="info-card">
-        <div class="eyebrow">Variant Guide</div>
+        <div class="eyebrow">Channel Condition Guide</div>
         <div class="legend-list">${variants}</div>
       </article>
     </section>
@@ -224,14 +224,13 @@ function renderTree(payload) {
       </div>
       <div class="pipeline-root">
         <div class="pipeline-tree" id="pipeline-tree">
-          <svg class="tree-svg" id="tree-svg" aria-hidden="true"></svg>
           <div class="pipeline-grid">
             <div class="source-column">
               <div class="source-card" data-connect-id="source-root">
                 <div class="source-head">
                   ${playButton(payload.sample.audio, "Source Audio")}
                   <div>
-                    <div class="source-title">Original Audio</div>
+                    <div class="source-title">Source Audio</div>
                     <div class="source-note">${escapeHtml(payload.meta.sample_note || "")}</div>
                   </div>
                 </div>
@@ -316,12 +315,6 @@ function setActiveBranch(root, branchIndex) {
     row.classList.toggle("is-active", isActive);
     row.classList.toggle("is-inactive", branchIndex !== null && !isActive);
   });
-
-  root.querySelectorAll(".tree-path").forEach((path) => {
-    const sameBranch = branchIndex !== null && path.dataset.branchIndex === String(branchIndex);
-    path.classList.toggle("is-active", sameBranch);
-    path.classList.toggle("is-inactive", branchIndex !== null && !sameBranch);
-  });
 }
 
 function setActiveVariant(root, variantId) {
@@ -365,53 +358,6 @@ function bindFocus(root) {
   });
 }
 
-function drawTreeLines(root) {
-  const tree = root.querySelector("#pipeline-tree");
-  const svg = root.querySelector("#tree-svg");
-  const source = root.querySelector('[data-connect-id="source-root"]');
-  const defenses = [...root.querySelectorAll('[data-connect-id^="defense-"]')];
-  if (!tree || !svg || !source || !defenses.length) return;
-
-  const treeRect = tree.getBoundingClientRect();
-  const sourceRect = source.getBoundingClientRect();
-  const sourceX = sourceRect.right - treeRect.left;
-  const sourceY = sourceRect.top + sourceRect.height / 2 - treeRect.top;
-  const defenseLeftX = Math.min(...defenses.map((node) => node.getBoundingClientRect().left - treeRect.left));
-  const trunkX = defenseLeftX - 22;
-  const defenseCenters = defenses.map((node) => {
-    const rect = node.getBoundingClientRect();
-    return {
-      xLeft: rect.left - treeRect.left,
-      xRight: rect.right - treeRect.left,
-      y: rect.top + rect.height / 2 - treeRect.top,
-    };
-  });
-  const minY = Math.min(...defenseCenters.map((item) => item.y));
-  const maxY = Math.max(...defenseCenters.map((item) => item.y));
-
-  svg.setAttribute("width", String(tree.clientWidth));
-  svg.setAttribute("height", String(tree.clientHeight));
-  svg.setAttribute("viewBox", `0 0 ${tree.clientWidth} ${tree.clientHeight}`);
-
-  const paths = [
-    `<path class="tree-path trunk" data-branch-index="shared" d="M ${sourceX} ${sourceY} L ${trunkX} ${sourceY}" />`,
-    `<path class="tree-path trunk" data-branch-index="shared" d="M ${trunkX} ${minY} L ${trunkX} ${maxY}" />`,
-  ];
-
-  defenseCenters.forEach((defense, index) => {
-    paths.push(`<path class="tree-path branch" data-branch-index="${index}" d="M ${trunkX} ${defense.y} L ${defense.xLeft} ${defense.y}" />`);
-    const pills = [...root.querySelectorAll(`.branch-row[data-branch-index="${index}"] .variant-pill-wrap`)];
-    pills.forEach((pill) => {
-      const rect = pill.getBoundingClientRect();
-      const xLeft = rect.left - treeRect.left;
-      const y = rect.top + rect.height / 2 - treeRect.top;
-      paths.push(`<path class="tree-path branch" data-branch-index="${index}" d="M ${defense.xRight} ${defense.y} L ${xLeft} ${y}" />`);
-    });
-  });
-
-  svg.innerHTML = paths.join("");
-}
-
 function renderPipeline(payload, summary) {
   pauseCurrent();
   state.activeBranch = null;
@@ -419,7 +365,6 @@ function renderPipeline(payload, summary) {
   state.pipeline = payload;
   els.root.innerHTML = buildMarkup(payload, summary);
   bindPlayback(els.root);
-  drawTreeLines(els.root);
   bindFocus(els.root);
 }
 
@@ -439,12 +384,6 @@ async function loadPipeline() {
   renderPipeline(payload, summary);
 }
 
-window.addEventListener("resize", () => {
-  if (els.root.querySelector("#pipeline-tree")) {
-    drawTreeLines(els.root);
-  }
-});
-
 loadPipeline().catch((error) => {
-  els.root.innerHTML = `<div class="error">Failed to load pipeline: ${escapeHtml(error.message)}</div>`;
+  els.root.innerHTML = `<div class="error">Failed to load benchmark data: ${escapeHtml(error.message)}</div>`;
 });

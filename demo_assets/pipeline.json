@@ -1,6 +1,6 @@
 {
   "title": "VocalBench Demo",
-  "subtitle": "同一条源语音经过不同主动防御、通道变体和克隆模型后的静态对比页面。页面已改为纯静态资源，可直接上传到 GitHub Pages。",
+  "subtitle": "This page presents controlled comparative results for a single source utterance under diverse active defense methods, channel perturbation conditions, and voice cloning model settings. The interface is released as a static artifact to support reproducible web presentation.",
   "sample": {
     "task": "full",
     "lang": "english",
@@ -10,7 +10,7 @@
     "duration": 123.32,
     "transcript": "The reality is that the richest people on the planet do not pay their fair share in taxes attacks on the wealth of the 3000 richest people in the world of about 3% a year would raise $400 billion. A slight increase in the minimum tax of on multinational popul…",
     "audio": "demo_assets/original.wav",
-    "note": "左侧这条音频是统一源样本。页面中所有 defense、variant 和模型输出都围绕它做横向比较。"
+    "note": "This waveform is the shared source sample; all defense, variant, and model outputs are compared against it."
   },
   "meta": {
     "defense_count": 7,
@@ -22,40 +22,40 @@
       "VocalBench applies active defenses to the same source utterance.",
       "VocalEval sends each defended sample into both TTS and VC cloning models."
     ],
-    "overview": "先试听左侧统一源样本，再比较每个 defense 分支的防御后参考音频。右侧的 variant 表示在该防御音频基础上继续加入不同通道扰动，展开后可以分别试听 TTS 和 VC 模型的输出。",
+    "overview": "Start with the shared source sample, then compare defended reference speech across defense branches. Each variant applies an additional channel perturbation to the defended speech; expanding a variant reveals TTS and VC model outputs under the same condition.",
     "reading_steps": [
-      "Source Audio 是页面统一入口样本，便于横向比较。",
-      "Defense 节点是各主动防御方法输出的参考说话人音频。",
-      "Variant 胶囊表示在对应防御音频上继续施加的通道变化。",
-      "VC 模型里已将原来的 GPTSoVITS_VC 替换为 GPTSoVITS_VC。"
+      "Source Audio is the shared reference sample used for cross-branch comparison.",
+      "Defense nodes correspond to defended reference speech produced by active defense methods.",
+      "Variant pills indicate additional channel transformations applied to each defended reference.",
+      "The VC branch reports outputs from GPTSoVITS_VC and SeedVC."
     ],
     "variant_guide": [
       {
         "key": "original",
         "label": "Original",
         "badge": "Original",
-        "description": "原始防御音频，不叠加额外通道扰动。"
+        "description": "Defended speech under the original channel condition, without additional perturbation."
       },
       {
         "key": "denoised",
         "label": "Denoised",
         "badge": "Denoised",
-        "description": "在对应防御音频基础上再做一次降噪处理。"
+        "description": "Defended speech after an additional denoising transformation."
       },
       {
         "key": "downsampled_8k",
         "label": "8 kHz",
         "badge": "8 kHz",
-        "description": "在对应防御音频基础上降采样到 8 kHz，模拟窄带语音。"
+        "description": "Defended speech resampled to 8 kHz to emulate narrowband transmission."
       },
       {
         "key": "compressed_mp3",
         "label": "MP3",
         "badge": "MP3",
-        "description": "在对应防御音频基础上做有损 MP3 压缩，再用于后续模型推理。"
+        "description": "Defended speech after lossy MP3 compression, followed by downstream model inference."
       }
     ],
-    "sample_note": "为了便于快速试听，当前页面中的 TTS / VC 输出统一使用短句内容；其中 VC 模型使用各防御分支音频作为目标说话人参考。",
+    "sample_note": "For controlled comparison, all TTS/VC outputs use the same short prompt text; VC models use branch-specific defended speech as target-speaker references.",
     "tts_models": [
       "XTTS",
       "E2",
@@ -71,14 +71,14 @@
   "branches": [
     {
       "group": "Original",
-      "note": "无主动防御，作为基线参考。",
+      "note": "No active defense is applied; this branch serves as the baseline condition.",
       "protected_audio": "demo_assets/Original/branch.wav",
       "metrics": {},
       "variants": [
         {
           "key": "original",
           "label": "Original",
-          "note": "原始防御音频，不叠加额外通道扰动。",
+          "note": "Defended speech under the original channel condition, without additional perturbation.",
           "audio": "demo_assets/Original/original/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -117,7 +117,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/Original/original/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/Original/original/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -132,7 +132,7 @@
         {
           "key": "denoised",
           "label": "Denoised",
-          "note": "在对应防御音频基础上再做一次降噪处理。",
+          "note": "Defended speech after an additional denoising transformation.",
           "audio": "demo_assets/Original/denoised/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -171,7 +171,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/Original/denoised/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/Original/denoised/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -186,7 +186,7 @@
         {
           "key": "downsampled_8k",
           "label": "8 kHz",
-          "note": "在对应防御音频基础上降采样到 8 kHz，模拟窄带语音。",
+          "note": "Defended speech resampled to 8 kHz to emulate narrowband transmission.",
           "audio": "demo_assets/Original/downsampled_8k/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -225,7 +225,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/Original/downsampled_8k/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/Original/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -240,7 +240,7 @@
         {
           "key": "compressed_mp3",
           "label": "MP3",
-          "note": "在对应防御音频基础上做有损 MP3 压缩，再用于后续模型推理。",
+          "note": "Defended speech after lossy MP3 compression, followed by downstream model inference.",
           "audio": "demo_assets/Original/compressed_mp3/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -279,7 +279,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/Original/compressed_mp3/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/Original/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -295,14 +295,14 @@
     },
     {
       "group": "AntiFake",
-      "note": "对抗式保护分支，用于提升克隆难度。",
+      "note": "AntiFake active defense branch.",
       "protected_audio": "demo_assets/AntiFake/branch.wav",
       "metrics": {},
       "variants": [
         {
           "key": "original",
           "label": "Original",
-          "note": "原始防御音频，不叠加额外通道扰动。",
+          "note": "Defended speech under the original channel condition, without additional perturbation.",
           "audio": "demo_assets/AntiFake/original/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -341,7 +341,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/AntiFake/original/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/AntiFake/original/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -356,7 +356,7 @@
         {
           "key": "denoised",
           "label": "Denoised",
-          "note": "在对应防御音频基础上再做一次降噪处理。",
+          "note": "Defended speech after an additional denoising transformation.",
           "audio": "demo_assets/AntiFake/denoised/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -395,7 +395,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/AntiFake/denoised/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/AntiFake/denoised/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -410,7 +410,7 @@
         {
           "key": "downsampled_8k",
           "label": "8 kHz",
-          "note": "在对应防御音频基础上降采样到 8 kHz，模拟窄带语音。",
+          "note": "Defended speech resampled to 8 kHz to emulate narrowband transmission.",
           "audio": "demo_assets/AntiFake/downsampled_8k/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -449,7 +449,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/AntiFake/downsampled_8k/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/AntiFake/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -464,7 +464,7 @@
         {
           "key": "compressed_mp3",
           "label": "MP3",
-          "note": "在对应防御音频基础上做有损 MP3 压缩，再用于后续模型推理。",
+          "note": "Defended speech after lossy MP3 compression, followed by downstream model inference.",
           "audio": "demo_assets/AntiFake/compressed_mp3/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -503,7 +503,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/AntiFake/compressed_mp3/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/AntiFake/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -519,14 +519,14 @@
     },
     {
       "group": "Attack-VC",
-      "note": "Attack-VC 主动防御分支。",
+      "note": "Attack-VC active defense branch.",
       "protected_audio": "demo_assets/Attack-VC/branch.wav",
       "metrics": {},
       "variants": [
         {
           "key": "original",
           "label": "Original",
-          "note": "原始防御音频，不叠加额外通道扰动。",
+          "note": "Defended speech under the original channel condition, without additional perturbation.",
           "audio": "demo_assets/Attack-VC/original/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -565,7 +565,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/Attack-VC/original/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/Attack-VC/original/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -580,7 +580,7 @@
         {
           "key": "denoised",
           "label": "Denoised",
-          "note": "在对应防御音频基础上再做一次降噪处理。",
+          "note": "Defended speech after an additional denoising transformation.",
           "audio": "demo_assets/Attack-VC/denoised/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -619,7 +619,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/Attack-VC/denoised/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/Attack-VC/denoised/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -634,7 +634,7 @@
         {
           "key": "downsampled_8k",
           "label": "8 kHz",
-          "note": "在对应防御音频基础上降采样到 8 kHz，模拟窄带语音。",
+          "note": "Defended speech resampled to 8 kHz to emulate narrowband transmission.",
           "audio": "demo_assets/Attack-VC/downsampled_8k/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -673,7 +673,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/Attack-VC/downsampled_8k/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/Attack-VC/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -688,7 +688,7 @@
         {
           "key": "compressed_mp3",
           "label": "MP3",
-          "note": "在对应防御音频基础上做有损 MP3 压缩，再用于后续模型推理。",
+          "note": "Defended speech after lossy MP3 compression, followed by downstream model inference.",
           "audio": "demo_assets/Attack-VC/compressed_mp3/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -727,7 +727,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/Attack-VC/compressed_mp3/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/Attack-VC/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -743,14 +743,14 @@
     },
     {
       "group": "ClearMask",
-      "note": "ClearMask 主动防御分支。",
+      "note": "ClearMask active defense branch.",
       "protected_audio": "demo_assets/ClearMask/branch.wav",
       "metrics": {},
       "variants": [
         {
           "key": "original",
           "label": "Original",
-          "note": "原始防御音频，不叠加额外通道扰动。",
+          "note": "Defended speech under the original channel condition, without additional perturbation.",
           "audio": "demo_assets/ClearMask/original/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -789,7 +789,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/ClearMask/original/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/ClearMask/original/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -804,7 +804,7 @@
         {
           "key": "denoised",
           "label": "Denoised",
-          "note": "在对应防御音频基础上再做一次降噪处理。",
+          "note": "Defended speech after an additional denoising transformation.",
           "audio": "demo_assets/ClearMask/denoised/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -843,7 +843,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/ClearMask/denoised/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/ClearMask/denoised/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -858,7 +858,7 @@
         {
           "key": "downsampled_8k",
           "label": "8 kHz",
-          "note": "在对应防御音频基础上降采样到 8 kHz，模拟窄带语音。",
+          "note": "Defended speech resampled to 8 kHz to emulate narrowband transmission.",
           "audio": "demo_assets/ClearMask/downsampled_8k/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -897,7 +897,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/ClearMask/downsampled_8k/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/ClearMask/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -912,7 +912,7 @@
         {
           "key": "compressed_mp3",
           "label": "MP3",
-          "note": "在对应防御音频基础上做有损 MP3 压缩，再用于后续模型推理。",
+          "note": "Defended speech after lossy MP3 compression, followed by downstream model inference.",
           "audio": "demo_assets/ClearMask/compressed_mp3/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -951,7 +951,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/ClearMask/compressed_mp3/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/ClearMask/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -967,14 +967,14 @@
     },
     {
       "group": "SampleMask",
-      "note": "SampleMask 主动防御分支。",
+      "note": "SampleMask active defense branch.",
       "protected_audio": "demo_assets/SampleMask/branch.wav",
       "metrics": {},
       "variants": [
         {
           "key": "original",
           "label": "Original",
-          "note": "原始防御音频，不叠加额外通道扰动。",
+          "note": "Defended speech under the original channel condition, without additional perturbation.",
           "audio": "demo_assets/SampleMask/original/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1013,7 +1013,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/SampleMask/original/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/SampleMask/original/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -1028,7 +1028,7 @@
         {
           "key": "denoised",
           "label": "Denoised",
-          "note": "在对应防御音频基础上再做一次降噪处理。",
+          "note": "Defended speech after an additional denoising transformation.",
           "audio": "demo_assets/SampleMask/denoised/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1067,7 +1067,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/SampleMask/denoised/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/SampleMask/denoised/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -1082,7 +1082,7 @@
         {
           "key": "downsampled_8k",
           "label": "8 kHz",
-          "note": "在对应防御音频基础上降采样到 8 kHz，模拟窄带语音。",
+          "note": "Defended speech resampled to 8 kHz to emulate narrowband transmission.",
           "audio": "demo_assets/SampleMask/downsampled_8k/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1121,7 +1121,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/SampleMask/downsampled_8k/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/SampleMask/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -1136,7 +1136,7 @@
         {
           "key": "compressed_mp3",
           "label": "MP3",
-          "note": "在对应防御音频基础上做有损 MP3 压缩，再用于后续模型推理。",
+          "note": "Defended speech after lossy MP3 compression, followed by downstream model inference.",
           "audio": "demo_assets/SampleMask/compressed_mp3/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1175,7 +1175,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/SampleMask/compressed_mp3/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/SampleMask/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -1191,14 +1191,14 @@
     },
     {
       "group": "SafeSpeech",
-      "note": "SafeSpeech 主动防御分支。",
+      "note": "SafeSpeech active defense branch.",
       "protected_audio": "demo_assets/SafeSpeech/branch.wav",
       "metrics": {},
       "variants": [
         {
           "key": "original",
           "label": "Original",
-          "note": "原始防御音频，不叠加额外通道扰动。",
+          "note": "Defended speech under the original channel condition, without additional perturbation.",
           "audio": "demo_assets/SafeSpeech/original/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1237,7 +1237,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/SafeSpeech/original/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/SafeSpeech/original/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -1252,7 +1252,7 @@
         {
           "key": "denoised",
           "label": "Denoised",
-          "note": "在对应防御音频基础上再做一次降噪处理。",
+          "note": "Defended speech after an additional denoising transformation.",
           "audio": "demo_assets/SafeSpeech/denoised/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1291,7 +1291,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/SafeSpeech/denoised/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/SafeSpeech/denoised/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -1306,7 +1306,7 @@
         {
           "key": "downsampled_8k",
           "label": "8 kHz",
-          "note": "在对应防御音频基础上降采样到 8 kHz，模拟窄带语音。",
+          "note": "Defended speech resampled to 8 kHz to emulate narrowband transmission.",
           "audio": "demo_assets/SafeSpeech/downsampled_8k/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1345,7 +1345,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/SafeSpeech/downsampled_8k/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/SafeSpeech/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -1360,7 +1360,7 @@
         {
           "key": "compressed_mp3",
           "label": "MP3",
-          "note": "在对应防御音频基础上做有损 MP3 压缩，再用于后续模型推理。",
+          "note": "Defended speech after lossy MP3 compression, followed by downstream model inference.",
           "audio": "demo_assets/SafeSpeech/compressed_mp3/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1399,7 +1399,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/SafeSpeech/compressed_mp3/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/SafeSpeech/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -1415,14 +1415,14 @@
     },
     {
       "group": "VoiceGuard",
-      "note": "VoiceGuard 主动防御分支。",
+      "note": "VoiceGuard active defense branch.",
       "protected_audio": "demo_assets/VoiceGuard/branch.wav",
       "metrics": {},
       "variants": [
         {
           "key": "original",
           "label": "Original",
-          "note": "原始防御音频，不叠加额外通道扰动。",
+          "note": "Defended speech under the original channel condition, without additional perturbation.",
           "audio": "demo_assets/VoiceGuard/original/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1461,7 +1461,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/VoiceGuard/original/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/VoiceGuard/original/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -1476,7 +1476,7 @@
         {
           "key": "denoised",
           "label": "Denoised",
-          "note": "在对应防御音频基础上再做一次降噪处理。",
+          "note": "Defended speech after an additional denoising transformation.",
           "audio": "demo_assets/VoiceGuard/denoised/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1515,7 +1515,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/VoiceGuard/denoised/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/VoiceGuard/denoised/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -1530,7 +1530,7 @@
         {
           "key": "downsampled_8k",
           "label": "8 kHz",
-          "note": "在对应防御音频基础上降采样到 8 kHz，模拟窄带语音。",
+          "note": "Defended speech resampled to 8 kHz to emulate narrowband transmission.",
           "audio": "demo_assets/VoiceGuard/downsampled_8k/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1569,7 +1569,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/VoiceGuard/downsampled_8k/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/VoiceGuard/downsampled_8k/AdaIN-VC.wav",
               "metrics": {}
             },
             {
@@ -1584,7 +1584,7 @@
         {
           "key": "compressed_mp3",
           "label": "MP3",
-          "note": "在对应防御音频基础上做有损 MP3 压缩，再用于后续模型推理。",
+          "note": "Defended speech after lossy MP3 compression, followed by downstream model inference.",
           "audio": "demo_assets/VoiceGuard/compressed_mp3/input.wav",
           "model_count": 7,
           "tts_count": 5,
@@ -1623,7 +1623,7 @@
             {
               "model": "GPTSoVITS_VC",
               "kind": "VC",
-              "audio": "demo_assets/VoiceGuard/compressed_mp3/GPTSoVITS_VC.wav",
+              "audio": "demo_assets/VoiceGuard/compressed_mp3/AdaIN-VC.wav",
               "metrics": {}
             },
             {
